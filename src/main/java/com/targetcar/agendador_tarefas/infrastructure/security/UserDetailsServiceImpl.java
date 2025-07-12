@@ -2,7 +2,7 @@ package com.targetcar.agendador_tarefas.infrastructure.security;
 
 
 import com.targetcar.agendador_tarefas.business.dto.UsuarioDTO;
-import com.targetcar.agendador_tarefas.infrastructure.client.UsuarioClient;
+import com.targetcar.agendador_tarefas.infrastructure.security.client.UsuarioClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
