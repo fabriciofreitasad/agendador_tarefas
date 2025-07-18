@@ -1,4 +1,4 @@
-package com.targetcar.agendador_tarefas.infrastructure.client;
+package com.targetcar.agendador_tarefas.infrastructure.security.client;
 
 import com.targetcar.agendador_tarefas.business.dto.UsuarioDTO;
 import org.springframework.cloud.openfeign.FeignClient;
