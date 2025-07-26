@@ -9,5 +9,5 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface TarefaUpdateConverter {
 
-    void updateTarefas(TarefasDTO dto,@MappingTarget TarefasEntity entity);
+    void updateTarefas(TarefasDTO dto, @MappingTarget TarefasEntity entity);
 }

@@ -16,43 +16,44 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TarefasController {
 
-    private final TarefaService tarefaService;
+    private final TarefaService tarefasService;
 
     @PostMapping
-    public ResponseEntity<TarefasDTO> gravarTarefas(
-            @RequestHeader("Authorization") String token,
-            @RequestBody TarefasDTO dto) {
-        return ResponseEntity.ok(tarefaService.gravarTarefas(token, dto));
+    public ResponseEntity<TarefasDTO> gravarTarefas(@RequestBody TarefasDTO dto,
+                                                    @RequestHeader("Authorization") String token) {
+        return ResponseEntity.ok(tarefasService.gravarTarefa(token, dto));
     }
 
     @GetMapping("/eventos")
-    public ResponseEntity<List<TarefasDTO>> buscarListaDeTarefasporPeriodo(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-            LocalDateTime dataInicial,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-            LocalDateTime dataFinal) {
-        return ResponseEntity.ok(tarefaService.buscartarefasAgendadosPorPeriodo(dataInicial, dataFinal));
+    public ResponseEntity<List<TarefasDTO>> buscaListaDeTarefasPorPeriodo(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal) {
+
+        return ResponseEntity.ok(tarefasService.buscaTarefasAgendadasPorPeriodo(dataInicial, dataFinal));
     }
 
     @GetMapping
-    public ResponseEntity<List<TarefasDTO>> buscarTarefasPorEmail(@RequestHeader(
-            "Authorization") String token) {
-        return ResponseEntity.ok(tarefaService.buscarTarefasPorEmail(token));
+    public ResponseEntity<List<TarefasDTO>> buscaTarefasPorEmail(@RequestHeader("Authorization") String token) {
+        List<TarefasDTO> tarefas = tarefasService.buscaTarefasPorEmail(token);
+        return ResponseEntity.ok(tarefas);
     }
 
     @DeleteMapping
     public ResponseEntity<Void> deletaTarefaPorId(@RequestParam("id") String id) {
-        tarefaService.deletaTarefaPorId(id);
+
+        tarefasService.deletaTarefaPorId(id);
+
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping
-    public ResponseEntity<TarefasDTO> alteraStatusNotificacao(@RequestParam("status")StatusNotificacaoEnum status,
-                                                              @RequestParam("id") String id){
-        return ResponseEntity.ok(tarefaService.alterarStatus(status, id));
+    public ResponseEntity<TarefasDTO> alteraStatusNotificacao(@RequestParam("status") StatusNotificacaoEnum status,
+                                                              @RequestParam("id") String id) {
+        return ResponseEntity.ok(tarefasService.alteraStatus(status, id));
     }
+
     @PutMapping
-    public ResponseEntity<TarefasDTO> updatetarefas(@RequestBody TarefasDTO dto, @RequestParam("id") String id){
-        return ResponseEntity.ok(tarefaService.updatetarefas(dto,id));
+    public ResponseEntity<TarefasDTO> updateTarefas(@RequestBody TarefasDTO dto, @RequestParam("id") String id) {
+        return ResponseEntity.ok(tarefasService.updateTarefas(dto, id));
     }
 }
