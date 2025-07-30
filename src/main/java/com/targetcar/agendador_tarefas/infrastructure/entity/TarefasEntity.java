@@ -17,11 +17,10 @@ public class TarefasEntity {
     @Id
     private String id;
     private String nomeTarefa;
-    private String descricacao;
+    private String descricao;
     private LocalDateTime dataCriacao;
-    private LocalDateTime dataEvanto;
+    private LocalDateTime dataEvento;
     private String emailUsuario;
     private LocalDateTime dataAlteracao;
     private StatusNotificacaoEnum statusNotificacaoEnum;
-
 }
